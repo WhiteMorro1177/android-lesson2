@@ -16,3 +16,4 @@ rootProject.name = "Lesson 2"
 include ':app'
 include ':intentfilter'
 include ':toastapp'
+include ':notificationapp'
