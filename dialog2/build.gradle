@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.mirea.tsybulko.toastapp'
+    namespace 'ru.mirea.tsybulko.dialog2'
     compileSdk 33
 
     defaultConfig {
-        applicationId "ru.mirea.tsybulko.toastapp"
+        applicationId "ru.mirea.tsybulko.dialog2"
         minSdk 26
         targetSdk 33
         versionCode 1
