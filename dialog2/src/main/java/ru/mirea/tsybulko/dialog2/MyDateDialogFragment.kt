@@ -4,21 +4,26 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.time.LocalDate
 
 class MyDateDialogFragment(private val ctx: Context) : DatePickerDialog(ctx) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.setOnDateSetListener { _, year, month, dayOfMonth ->
-            val dateTextView: TextView = (ctx as AppCompatActivity).findViewById(R.id.dateTextView)
+        setOnDateSetListener { _, year, month, dayOfMonth ->
+            try {
 
-            val date = "${if (dayOfMonth.toString().length < 2) ("0$dayOfMonth") else (dayOfMonth)}." +
-                    "${if (month.toString().length < 2) ("0$month") else (month)}." +
-                    "$year"
+                val dateTextView: TextView =
+                    (ctx as AppCompatActivity).findViewById(R.id.dateTextView)
+                val date: String = LocalDate.of(year, month, dayOfMonth).toString()
 
-            date.also { dateTextView.text = it }
+                date.also { dateTextView.text = it }
+            } catch (exc: Exception) {
+                Toast.makeText(ctx, "Error! ${exc.message}", Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

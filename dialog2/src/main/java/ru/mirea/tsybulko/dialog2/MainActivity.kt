@@ -16,34 +16,16 @@ class MainActivity : AppCompatActivity() {
         // bind components
         val timeTextView = findViewById<TextView>(R.id.timeTextView)
         val dateTextView = findViewById<TextView>(R.id.dateTextView)
-        // val progressTextView = findViewById<TextView>(R.id.progressTextView)
 
 
-        val time: String = getCurrentTime("hh:mm")
-        val date: String = getCurrentDate("dd.MM.yyyy")
+        val time: String = getCurrentTime()
         timeTextView.text = time
-        dateTextView.text = date
+        dateTextView.text = LocalDate.now().toString()
     }
 
-    private fun getCurrentTime(format: String): String {
-
-        // multiply format with time
-
+    private fun getCurrentTime(/* format: String */): String {
         val current = LocalDateTime.now()
         return "${current.hour}:${if (current.minute.toString().length < 2) ("0${current.minute}") else (current.minute)}"
-    }
-
-    private fun getCurrentDate(format: String): String {
-
-        // multiply format with dates
-
-        val current = LocalDate.now()
-        val currentDay =
-            if (current.dayOfMonth.toString().length < 2) (current.dayOfMonth.toString()) else ("0${current.dayOfMonth}")
-        val currentMonth =
-            if (current.month.toString().length < 2) (current.month.toString()) else ("0${current.month}")
-
-        return "$currentDay.$currentMonth.${current.year}"
     }
 
     fun onClickShowDialog(view: View) {
@@ -62,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showProgressDialog(view: View) {
-        TODO("learn things about progress dialog")
+        val dialog = MyProgressDialogFragment(this)
+        dialog.show()
     }
 }
