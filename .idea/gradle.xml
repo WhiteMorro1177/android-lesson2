@@ -10,12 +10,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/dialog" />
-            <option value="$PROJECT_DIR$/dialog2" />
-            <option value="$PROJECT_DIR$/intentfilter" />
-            <option value="$PROJECT_DIR$/notificationapp" />
-            <option value="$PROJECT_DIR$/toastapp" />
+            <option value="$PROJECT_DIR$/Dialog" />
+            <option value="$PROJECT_DIR$/IntentFilter" />
+            <option value="$PROJECT_DIR$/MultiActivity" />
+            <option value="$PROJECT_DIR$/NotificationApp" />
+            <option value="$PROJECT_DIR$/ToastApp" />
           </set>
         </option>
       </GradleProjectSettings>
