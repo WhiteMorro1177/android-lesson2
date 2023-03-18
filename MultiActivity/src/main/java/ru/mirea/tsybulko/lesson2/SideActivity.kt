@@ -7,18 +7,19 @@ import android.widget.EditText
 import android.widget.TextView
 
 class SideActivity : AppCompatActivity() {
-
     private var TAG: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_side)
+        Log.d(TAG, "Side onCreate")
 
         val extras: Bundle? = intent.extras
-
         val textView: TextView = findViewById(R.id.textView2)
+
+        TAG = extras?.getString("tag").toString()
         textView.text = extras?.getString("plainTextValue").toString()
-        TAG = extras?.getString("tagFromMainActivity").toString()
-        Log.d(TAG, "Side onCreate")
+
     }
 
     override fun onStart() {
@@ -58,6 +59,6 @@ class SideActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d(TAG, "Side onSaveInstantState || saved: ${findViewById<EditText>(R.id.plainText1).text}")
+        Log.d(TAG, "Side onSaveInstantState")
     }
 }

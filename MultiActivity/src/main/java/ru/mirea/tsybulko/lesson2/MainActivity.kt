@@ -3,21 +3,20 @@ package ru.mirea.tsybulko.lesson2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.View
-import android.view.WindowInsets.Side
 import android.widget.EditText
-import android.widget.TextView
-import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
     private val TAG: String = "ActivityInvoking"
+    private var plainTextField: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.d(TAG, "Main onCreate")
-
+        plainTextField = findViewById(R.id.plainText1)
     }
 
     override fun onStart() {
@@ -54,19 +53,20 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "Main onRestoreInstantState")
         val savedPlainTextValue: String? = savedInstanceState.getString("plainText")
-        findViewById<EditText>(R.id.plainText1).setText(savedPlainTextValue)
+        plainTextField?.text = savedPlainTextValue as Editable
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d(TAG, "Main onSaveInstantState || saved: ${findViewById<EditText>(R.id.plainText1).text}")
-        outState.putString("plainText", findViewById<EditText>(R.id.plainText1).text.toString())
+        val textToSave = plainTextField?.text.toString()
+        Log.d(TAG, "Main onSaveInstantState || saved: $textToSave")
+        outState.putString("plainText", textToSave)
     }
 
     fun invokeSideActivity(view: View) {
         val sideActivity: Intent = Intent(this, SideActivity::class.java)
-        sideActivity.putExtra("plainTextValue", findViewById<EditText>(R.id.plainText1).text.toString())
-        sideActivity.putExtra("tagFromMainActivity", TAG)
+        sideActivity.putExtra("plainTextValue", plainTextField?.text.toString())
+        sideActivity.putExtra("tag", TAG)
         startActivity(sideActivity)
     }
 
